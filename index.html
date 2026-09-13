@@ -20,6 +20,8 @@
     --faint:#8A96A3;
     --pine:#2E5D4B;
     --pine-deep:#1F4436;
+    --link:#15603A;
+    --link-hover:#0E4429;
     --hairline:#E5E6E0;
     --hairline-strong:#D4D6CE;
     --measure:66ch;
@@ -36,8 +38,8 @@
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
 
-  a{color:var(--pine); text-decoration:none;}
-  a:hover{color:var(--pine-deep); text-decoration:underline; text-underline-offset:3px;}
+  a{color:var(--link); text-decoration:none;}
+  a:hover{color:var(--link-hover); text-decoration:underline; text-underline-offset:3px;}
   :focus-visible{outline:2px solid var(--pine); outline-offset:3px; border-radius:2px;}
 
   /* Header / tabs */
@@ -74,9 +76,9 @@
   .panel > p, .panel .prose{max-width:var(--measure);}
 
   .links{list-style:none; padding:0; margin:2rem 0 0; display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; font-size:.98rem;}
-  .links a{color:var(--ink); display:inline-flex; align-items:center; gap:.4rem;}
-  .links a:hover{color:var(--pine);}
-  .links svg{width:1.05em; height:1.05em; stroke:var(--pine); fill:none; stroke-width:1.6;}
+  .links a{color:var(--link); display:inline-flex; align-items:center; gap:.4rem;}
+  .links a:hover{color:var(--link-hover);}
+  .links svg{width:1.05em; height:1.05em; stroke:var(--link); fill:none; stroke-width:1.6;}
 
   .tags{list-style:none; padding:0; margin:1.2rem 0 0; display:flex; flex-wrap:wrap; gap:.5rem;}
   .tags li{font-size:.88rem; color:var(--muted); border:1px solid var(--hairline-strong); border-radius:100px; padding:.25rem .8rem;}
@@ -89,8 +91,8 @@
   .what h3{font-size:1.2rem; margin:0 0 .25rem;}
   /* Institution: bold, hyperlinked subtitle */
   .where{font-size:.98rem; margin:0 0 .5rem; color:var(--muted);}
-  .where a{color:var(--pine); font-weight:600;}
-  .where a:hover{color:var(--pine-deep);}
+  .where a{color:var(--link); font-weight:600;}
+  .where a:hover{color:var(--link-hover); text-decoration:underline; text-underline-offset:3px;}
   .what p{margin:0; color:var(--muted); font-size:.98rem;}
 
   .cta{display:inline-flex; align-items:center; gap:.5rem; margin-top:2.4rem; background:var(--pine); color:#fff; padding:.7rem 1.3rem; border-radius:4px; font-weight:500; font-size:.98rem;}
@@ -127,9 +129,10 @@
   .talk{max-width:var(--measure); display:grid; grid-template-columns:7rem 1fr; gap:1.3rem; padding:1.3rem 0; border-top:1px solid var(--hairline);}
   .talk:first-of-type{border-top:0;}
   .talk .kind{font-size:.78rem; color:var(--pine); font-weight:600; letter-spacing:.02em; padding-top:.15rem;}
-  .talk h3{font-size:1.12rem; margin:0 0 .3rem; font-family:"Hanken Grotesk",sans-serif; font-weight:600;}
-  .talk .event{color:var(--muted); font-size:.95rem; margin:0;}
-  .talk .event .date{color:var(--faint);}
+  .talk h3{font-size:1.12rem; margin:0 0 .2rem; font-family:"Hanken Grotesk",sans-serif; font-weight:600;}
+  .talk h3 a{color:var(--link);}
+  .talk h3 a:hover{color:var(--link-hover); text-decoration:underline; text-underline-offset:3px;}
+  .talk-note{color:var(--faint); font-size:.95rem; margin:.15rem 0 0;}
 
   /* Footer */
   footer{border-top:1px solid var(--hairline); margin-top:2rem; padding:2.5rem var(--pad) 3rem;}
@@ -393,30 +396,27 @@
       Selected venues where I have presented my work.</p>
 
     <article class="talk">
-      <div class="kind">Symposium</div>
+      <div class="kind">2026</div>
       <div>
-        <h3>Presented research on exposomics and brain health</h3>
-        <!-- Paste the event's official URL between the quotes when you have it -->
-        <p class="event"><a href="#">Global Exposomics for Brain Health Symposium</a> ·
-        <span class="date">2026</span></p>
+        <!-- Paste the event's official URL in href="" when you have it -->
+        <h3><a href="#">Global Exposomics for Brain Health Symposium</a></h3>
+        <p class="talk-note">Your talk or poster title — replace this line.</p>
       </div>
     </article>
 
     <article class="talk">
-      <div class="kind">Congress</div>
+      <div class="kind">2025</div>
       <div>
-        <h3>Presented biomarker research in neuropsychopharmacology</h3>
-        <p class="event">The 38th <a href="https://www.ecnp.eu">European College of Neuropsychopharmacology (ECNP)</a> Congress ·
-        <span class="date">2025</span></p>
+        <h3><a href="https://www.ecnp.eu">38th European College of Neuropsychopharmacology (ECNP) Congress</a></h3>
+        <p class="talk-note">Your talk or poster title — replace this line.</p>
       </div>
     </article>
 
     <article class="talk">
-      <div class="kind">Congress</div>
+      <div class="kind">2025</div>
       <div>
-        <h3>Presented developmental-origins research</h3>
-        <p class="event">International Society for <a href="https://dohadsoc.org">Developmental Origins of Health and Disease (DOHaD Society)</a> Congress ·
-        <span class="date">2025</span></p>
+        <h3><a href="https://dohadsoc.org">International Society for Developmental Origins of Health and Disease (DOHaD Society) Congress</a></h3>
+        <p class="talk-note">Your talk or poster title — replace this line.</p>
       </div>
     </article>
   </section>
