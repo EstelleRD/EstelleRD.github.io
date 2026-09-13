@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Estelle Renard-Dausset — Biostatistician</title>
+<meta name="description" content="Estelle Renard-Dausset — biomarker biostatistician: research, projects, publications and CV.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#FAFAF7;
+    --surface:#FFFFFF;
+    --ink:#1F2933;
+    --muted:#63707E;
+    --faint:#8A96A3;
+    --pine:#2E5D4B;
+    --pine-deep:#1F4436;
+    --hairline:#E5E6E0;
+    --hairline-strong:#D4D6CE;
+    --measure:66ch;
+    --pad:clamp(1.25rem, 5vw, 3rem);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hanken Grotesk", system-ui, sans-serif;
+    font-size:1.0625rem;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  a{color:var(--pine); text-decoration:none;}
+  a:hover{color:var(--pine-deep); text-decoration:underline; text-underline-offset:3px;}
+
+  :focus-visible{outline:2px solid var(--pine); outline-offset:3px; border-radius:2px;}
+
+  /* ---------- Header / tab bar ---------- */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:rgba(250,250,247,.88);
+    backdrop-filter:saturate(120%) blur(8px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .bar{
+    max-width:72rem; margin:0 auto;
+    padding:.9rem var(--pad);
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:1.5rem; flex-wrap:wrap;
+  }
+  .wordmark{font-family:"Newsreader", serif; font-size:1.3rem; font-weight:500; letter-spacing:.01em; white-space:nowrap;}
+  .wordmark a{color:var(--ink);}
+  .wordmark a:hover{text-decoration:none; color:var(--pine);}
+
+  nav{display:flex; gap:.35rem; flex-wrap:wrap;}
+  nav a{
+    color:var(--muted); font-size:.95rem; font-weight:500;
+    padding:.35rem .1rem; border-bottom:2px solid transparent;
+    transition:color .18s ease, border-color .18s ease;
+  }
+  nav a + a{margin-left:1rem;}
+  nav a:hover{color:var(--ink); text-decoration:none;}
+  nav a.is-active{color:var(--pine); border-bottom-color:var(--pine);}
+
+  /* ---------- Layout ---------- */
+  main{max-width:72rem; margin:0 auto; padding:0 var(--pad);}
+  .panel{display:none; padding:clamp(2.5rem,7vw,4.5rem) 0 4rem;}
+  .panel.is-active{display:block; animation:fade .35s ease both;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+
+  h1,h2,h3{font-family:"Newsreader", serif; font-weight:500; line-height:1.15;}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 210px; gap:2.75rem; align-items:start;}
+  .lede{max-width:var(--measure);}
+  .lede h1{font-size:clamp(2.6rem, 6.5vw, 4.2rem); margin:0 0 .3rem; letter-spacing:-.01em;}
+  .role{font-family:"Newsreader", serif; font-style:italic; font-size:clamp(1.15rem,2.5vw,1.4rem); color:var(--pine); margin:0 0 1.6rem;}
+  .lede p{margin:0 0 1.1rem; color:var(--ink);}
+
+  /* Portrait: drop a file named photo.jpg next to index.html and it appears here.
+     Until then, a tidy placeholder shows instead. */
+  .portrait{margin:0;}
+  .portrait img{
+    width:100%; aspect-ratio:4/5; object-fit:cover;
+    border-radius:6px; border:1px solid var(--hairline-strong);
+    display:block;
+  }
+  .portrait--empty{
+    width:100%; aspect-ratio:4/5;
+    border:1.5px dashed var(--hairline-strong); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--faint); font-size:.85rem; padding:1rem;
+  }
+
+  h2.section{font-size:1.9rem; margin:0 0 1.6rem; padding-bottom:.6rem; border-bottom:1px solid var(--hairline-strong);}
+  .panel > p, .panel .prose{max-width:var(--measure);}
+
+  .links{list-style:none; padding:0; margin:2rem 0 0; display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; font-size:.98rem;}
+  .links a{color:var(--ink); display:inline-flex; align-items:center; gap:.4rem;}
+  .links a:hover{color:var(--pine);}
+  .links svg{width:1.05em; height:1.05em; stroke:var(--pine); fill:none; stroke-width:1.6;}
+
+  .tags{list-style:none; padding:0; margin:1.2rem 0 0; display:flex; flex-wrap:wrap; gap:.5rem;}
+  .tags li{font-size:.88rem; color:var(--muted); border:1px solid var(--hairline-strong); border-radius:100px; padding:.25rem .8rem;}
+
+  /* ---------- Timeline (CV) ---------- */
+  .timeline{margin:0; padding:0; list-style:none; max-width:var(--measure);}
+  .entry{display:grid; grid-template-columns:9rem 1fr; gap:1.4rem; padding:1.4rem 0; border-top:1px solid var(--hairline);}
+  .entry:first-child{border-top:0; padding-top:0;}
+  .when{color:var(--faint); font-size:.9rem; font-variant-numeric:tabular-nums; padding-top:.2rem;}
+  .what h3{font-size:1.2rem; margin:0 0 .2rem;}
+  .where{color:var(--pine); font-size:.98rem; margin:0 0 .5rem;}
+  .what p{margin:0; color:var(--muted); font-size:.98rem;}
+
+  .cta{display:inline-flex; align-items:center; gap:.5rem; margin-top:2.4rem; background:var(--pine); color:#fff; padding:.7rem 1.3rem; border-radius:4px; font-weight:500; font-size:.98rem;}
+  .cta:hover{background:var(--pine-deep); color:#fff; text-decoration:none;}
+
+  .subhead{font-family:"Newsreader",serif; font-size:1.35rem; font-weight:500; margin:3rem 0 1.1rem;}
+
+  .skills{max-width:var(--measure); margin:0;}
+  .skills div{padding:.7rem 0; border-top:1px solid var(--hairline); display:grid; grid-template-columns:9rem 1fr; gap:1.4rem;}
+  .skills div:first-child{border-top:0;}
+  .skills dt{color:var(--faint); font-size:.9rem; padding-top:.1rem;}
+  .skills dd{margin:0; color:var(--ink); font-size:.98rem;}
+
+  /* ---------- Projects ---------- */
+  .project{max-width:var(--measure); padding:1.8rem 0; border-top:1px solid var(--hairline);}
+  .project:first-of-type{border-top:0; padding-top:.4rem;}
+  .project h3{font-size:1.35rem; margin:0 0 .25rem;}
+  .project .meta{color:var(--faint); font-size:.9rem; margin:0 0 .8rem;}
+  .project p{margin:0 0 .8rem; color:var(--ink);}
+  .project .links{margin-top:.4rem; font-size:.92rem;}
+
+  /* ---------- Publications & conferences ---------- */
+  .refs{list-style:none; margin:0; padding:0; max-width:var(--measure); counter-reset:ref;}
+  .refs li{padding:1.2rem 0; border-top:1px solid var(--hairline); padding-left:2.4rem; position:relative;}
+  .refs li:first-child{border-top:0;}
+  .refs li::before{counter-increment:ref; content:"["counter(ref)"]"; position:absolute; left:0; top:1.2rem; color:var(--faint); font-variant-numeric:tabular-nums; font-size:.9rem;}
+  .refs .you{color:var(--ink); font-weight:600;}
+  .refs .venue{font-family:"Newsreader",serif; font-style:italic; color:var(--muted);}
+  .refs .year{color:var(--faint);}
+  .refs .reflinks{margin-top:.35rem; font-size:.9rem; display:flex; gap:1rem; flex-wrap:wrap;}
+
+  .talk{max-width:var(--measure); display:grid; grid-template-columns:7rem 1fr; gap:1.3rem; padding:1.3rem 0; border-top:1px solid var(--hairline);}
+  .talk:first-of-type{border-top:0;}
+  .talk .kind{font-size:.78rem; color:var(--pine); font-weight:600; letter-spacing:.02em; padding-top:.15rem;}
+  .talk h3{font-size:1.12rem; margin:0 0 .25rem; font-family:"Hanken Grotesk",sans-serif; font-weight:600;}
+  .talk .event{color:var(--muted); font-size:.95rem; margin:0;}
+  .talk .event .date{color:var(--faint);}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--hairline); margin-top:2rem; padding:2.5rem var(--pad) 3rem;}
+  .foot{max-width:72rem; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap; color:var(--faint); font-size:.9rem;}
+  .foot nav{gap:1.2rem;}
+  .foot nav a{color:var(--muted); border:0; padding:0;}
+  .foot nav a:hover{color:var(--pine);}
+
+  @media (max-width:640px){
+    .about-grid{grid-template-columns:1fr;}
+    .portrait{order:-1; width:130px;}
+    .entry{grid-template-columns:1fr; gap:.3rem;}
+    .when{padding-top:0;}
+    .talk{grid-template-columns:1fr; gap:.3rem;}
+    .skills div{grid-template-columns:1fr; gap:.2rem;}
+    .skills dt{padding-top:0;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto !important;}
+    .panel.is-active{animation:none;}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     HEADER + TABS  (rename/reorder here; each href must match a <section id="...">)
+     ============================================================ -->
+<header>
+  <div class="bar">
+    <div class="wordmark"><a href="#about">Estelle Renard-Dausset</a></div>
+    <nav id="tabs" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#cv">CV</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#conferences">Conferences</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="panel" aria-labelledby="about-h">
+    <div class="about-grid">
+      <div class="lede">
+        <h1 id="about-h">Estelle Renard-Dausset</h1>
+        <p class="role">Biomarker Biostatistician — EPFL Life Sciences Engineer</p>
+
+        <p>I am a principal biostatistician in biomedical research with expertise in
+        advanced statistical modeling, machine learning, and large-scale multi-omics
+        data analysis, applied to identifying clinically relevant biomarkers of health
+        outcomes.</p>
+
+        <p>I am a fluent, independent programmer in R, SAS, and Python — I code and lead
+        every analysis end to end, from design through interpretation — and I enjoy
+        translating complex biological data into clinically meaningful findings that
+        support therapeutic strategy and clinical implementation.</p>
+
+        <ul class="tags" aria-label="Areas of expertise">
+          <li>Biostatistics &amp; statistical modeling</li>
+          <li>Biomarker discovery</li>
+          <li>Multi-omics &amp; NGS</li>
+          <li>Machine &amp; deep learning</li>
+          <li>Scientific communication</li>
+        </ul>
+
+        <ul class="links">
+          <li><a href="mailto:estellerenarddausset@gmail.com">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            estellerenarddausset@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/estelle-renard-dausset">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 12v5"/></svg>
+            LinkedIn</a></li>
+          <!-- Add your GitHub / Google Scholar once you have the links -->
+          <li><a href="https://github.com/yourusername">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.7A5.2 5.2 0 0 0 20 4.8 4.9 4.9 0 0 0 19.9 1S18.7.6 16 2.5a13.4 13.4 0 0 0-7 0C6.3.6 5.1 1 5.1 1A4.9 4.9 0 0 0 5 4.8a5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.1 6.4 6.1 6.7a3.4 3.4 0 0 0-.9 2.6V22"/></svg>
+            GitHub</a></li>
+        </ul>
+      </div>
+
+      <!-- PHOTO: save your picture as photo.jpg in the same folder as index.html.
+           If no file is found, the dashed placeholder below shows instead. -->
+      <figure class="portrait">
+        <img src="photo.jpg" alt="Estelle Renard-Dausset"
+             onerror="this.outerHTML='&lt;div class=&quot;portrait--empty&quot;&gt;Add a file named photo.jpg beside index.html&lt;/div&gt;'">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== CV ===================== -->
+  <section id="cv" class="panel" aria-labelledby="cv-h">
+    <h2 id="cv-h" class="section">Curriculum Vitae</h2>
+
+    <h3 class="subhead">Experience</h3>
+    <ul class="timeline">
+      <li class="entry">
+        <div class="when">Feb 2024 — now</div>
+        <div class="what">
+          <h3>Principal Biostatistician</h3>
+          <p class="where">ISGlobal — Barcelona Institute for Global Health, Barcelona</p>
+          <p>Design, code and interpret advanced statistical analyses of high-dimensional
+          multi-omics data to identify clinically relevant biomarkers across large population
+          cohorts. Author peer-reviewed publications, present at major conferences, and
+          collaborate with clinicians and epidemiologists to translate clinical questions
+          into robust statistical approaches.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">Mar — Aug 2023</div>
+        <div class="what">
+          <h3>Master Thesis Researcher</h3>
+          <p class="where">Harvard Medical School, Dept. of Biomedical Informatics, Boston</p>
+          <p>Led a data analysis project integrating brain MRI phenotypes from 43,000+
+          participants with clinical, cardiovascular and genetic predictors to identify
+          determinants of brain health. Awarded highest grade (6/6), a $12,000 scholarship,
+          and a job offer at completion.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">Sep 2022 — Feb 2023</div>
+        <div class="what">
+          <h3>Machine Learning Intern, Precision Oncology</h3>
+          <p class="where">Novigenix SA, Lausanne</p>
+          <p>Developed blood-based (liquid biopsy) RNA-seq analysis pipelines supporting
+          non-invasive cancer prediction and therapeutic decision-making in precision oncology.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">Feb — Jul 2022</div>
+        <div class="what">
+          <h3>Semester Intern, In-Field Genetic Sequencing</h3>
+          <p class="where">GenoRobotics, Lausanne</p>
+          <p>Improved portable genetic sequencing and in-field DNA extraction workflows for
+          biodiversity monitoring, working hands-on with molecular diagnostic and sequencing
+          technologies.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">Sep — Dec 2021</div>
+        <div class="what">
+          <h3>Semester Intern, Neuroscience</h3>
+          <p class="where">EPFL Laboratory of Behavioral Genetics, Lausanne</p>
+          <p>Investigated stress-related molecular mechanisms in a genetic animal model of
+          PTSD, applying laboratory and immunohistochemistry techniques.</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3 class="subhead">Education</h3>
+    <ul class="timeline">
+      <li class="entry">
+        <div class="when">2020 — 2023</div>
+        <div class="what">
+          <h3>MSc, Life Sciences Engineering</h3>
+          <p class="where">EPFL (Swiss Federal Institute of Technology), Lausanne</p>
+          <p>Average 5.53/6 · Certificate of Excellence (Top 5%) · Neuroscience &amp;
+          Neuroengineering specialization · thesis at Harvard Medical School.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">2019 — 2020</div>
+        <div class="what">
+          <h3>Exchange Year</h3>
+          <p class="where">KTH Royal Institute of Technology, Stockholm</p>
+          <p>Third Bachelor year on a highly selective exchange · scholarship of 2,000 CHF.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">2017 — 2020</div>
+        <div class="what">
+          <h3>BSc, Life Sciences Engineering</h3>
+          <p class="where">EPFL (Swiss Federal Institute of Technology), Lausanne</p>
+          <p>Average 4.87/6.</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3 class="subhead">Skills</h3>
+    <dl class="skills">
+      <div><dt>Programming</dt><dd>R · SAS · Python · MATLAB · C++ · SQL</dd></div>
+      <div><dt>Methods</dt><dd>Bioinformatic pipelines (RNA-seq, NGS) · machine &amp; deep learning · AI/LLM workflows · GitHub</dd></div>
+      <div><dt>Domains</dt><dd>Biomarker discovery · multi-omics analysis · immunology · translational health</dd></div>
+      <div><dt>Languages</dt><dd>French (fluent) · English (fluent) · Spanish (C1)</dd></div>
+    </dl>
+
+    <!-- Put your CV file in the repo named cv.pdf and this button downloads it -->
+    <a class="cta" href="cv.pdf" download>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+      Download full CV (PDF)
+    </a>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="panel" aria-labelledby="projects-h">
+    <h2 id="projects-h" class="section">Projects</h2>
+
+    <article class="project">
+      <h3>Sickle cell disease diagnosis from microscopy blood images</h3>
+      <p class="meta">2020 · Deep learning, image segmentation</p>
+      <p>Built a deep learning model for automated segmentation of blood microscopy images
+      to enable AI-based diagnosis of sickle cell disease.</p>
+      <!-- Add a link with: <a href="https://...">Code</a> -->
+      <ul class="links"><li><a href="#">Code</a></li><li><a href="#">Report</a></li></ul>
+    </article>
+
+    <article class="project">
+      <h3>Large-scale text analysis with NLP and machine learning</h3>
+      <p class="meta">2021 · Best project out of 117 · EPFL Applied Data Analysis</p>
+      <p>Applied machine learning and NLP to large-scale text data, using citation patterns
+      to model political positioning — ranked the top data-analysis project in the course.</p>
+      <ul class="links"><li><a href="#">Repository</a></li></ul>
+    </article>
+
+    <article class="project">
+      <h3>Probiotic product design in translational neuroscience</h3>
+      <p class="meta">2020 · Concept design</p>
+      <p>Designed a probiotic-based product concept to reduce symptoms of depression, grounded
+      in the gut microbiota–brain axis.</p>
+      <ul class="links"><li><a href="#">Details</a></li></ul>
+    </article>
+  </section>
+
+  <!-- ===================== PUBLICATIONS ===================== -->
+  <section id="publications" class="panel" aria-labelledby="pubs-h">
+    <h2 id="pubs-h" class="section">Publications</h2>
+    <!-- Replace the placeholders below with your real papers.
+         Copy an <li> block to add another. Bold your own name with <span class="you">…</span> -->
+    <ol class="refs">
+      <li>
+        <span class="you">Renard-Dausset, E.</span>, Coauthor A., &amp; Coauthor B.
+        “Title of the paper as it appears in print.”
+        <span class="venue">Journal Name</span>, <span class="year">2025.</span>
+        <div class="reflinks"><a href="#">PDF</a><a href="#">DOI</a><a href="#">Code</a></div>
+      </li>
+      <li>
+        Coauthor A., <span class="you">Renard-Dausset, E.</span>, &amp; Coauthor C.
+        “Another paper title.”
+        <span class="venue">Journal Name</span>, <span class="year">2024.</span>
+        <div class="reflinks"><a href="#">PDF</a><a href="#">DOI</a></div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ===================== CONFERENCES ===================== -->
+  <section id="conferences" class="panel" aria-labelledby="conf-h">
+    <h2 id="conf-h" class="section">Talks &amp; Conferences</h2>
+
+    <!-- HYPERLINK PATTERN: wrap the event name in <a href="https://...">…</a>.
+         The links below point to each society's main site — swap in the exact
+         congress page when you have it. -->
+    <article class="talk">
+      <div class="kind">Conference</div>
+      <div>
+        <h3>Presentation of multi-omics biomarker findings</h3>
+        <p class="event"><a href="https://www.ecnp.eu">ECNP Congress</a> ·
+        <span class="date">2025</span></p>
+      </div>
+    </article>
+
+    <article class="talk">
+      <div class="kind">Conference</div>
+      <div>
+        <h3>Determinants of brain health across large cohorts</h3>
+        <p class="event"><a href="https://dohadsoc.org">DOHaD World Congress</a> ·
+        <span class="date">2025</span></p>
+      </div>
+    </article>
+
+    <article class="talk">
+      <div class="kind">Conference</div>
+      <div>
+        <h3>Exposomics and brain health</h3>
+        <!-- Paste the event's URL between the quotes when available -->
+        <p class="event"><a href="#">Global Exposomics for Brain Health</a> ·
+        <span class="date">2026</span></p>
+      </div>
+    </article>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="foot">
+    <span>© <span id="year"></span> Estelle Renard-Dausset</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:estellerenarddausset@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/estelle-renard-dausset">LinkedIn</a>
+      <a href="https://github.com/yourusername">GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // Tab switching via URL hash (tabs are shareable + survive refresh)
+  const tabs = Array.from(document.querySelectorAll('#tabs a'));
+  const panels = Array.from(document.querySelectorAll('.panel'));
+  const ids = panels.map(p => p.id);
+
+  function show(id){
+    if(!ids.includes(id)) id = ids[0];
+    panels.forEach(p => {
+      const active = p.id === id;
+      p.classList.toggle('is-active', active);
+      p.setAttribute('aria-hidden', String(!active));
+    });
+    tabs.forEach(a => {
+      const active = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('is-active', active);
+      active ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current');
+    });
+    window.scrollTo({top:0, behavior:'auto'});
+  }
+  function fromHash(){ show((location.hash || '#about').slice(1)); }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
