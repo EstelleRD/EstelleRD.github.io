@@ -30,77 +30,45 @@
   html{scroll-behavior:smooth;}
 
   body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
+    margin:0; background:var(--paper); color:var(--ink);
     font-family:"Hanken Grotesk", system-ui, sans-serif;
-    font-size:1.0625rem;
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
+    font-size:1.0625rem; line-height:1.65;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
 
   a{color:var(--pine); text-decoration:none;}
   a:hover{color:var(--pine-deep); text-decoration:underline; text-underline-offset:3px;}
-
   :focus-visible{outline:2px solid var(--pine); outline-offset:3px; border-radius:2px;}
 
-  /* ---------- Header / tab bar ---------- */
-  header{
-    position:sticky; top:0; z-index:20;
-    background:rgba(250,250,247,.88);
-    backdrop-filter:saturate(120%) blur(8px);
-    border-bottom:1px solid var(--hairline);
-  }
-  .bar{
-    max-width:72rem; margin:0 auto;
-    padding:.9rem var(--pad);
-    display:flex; align-items:baseline; justify-content:space-between;
-    gap:1.5rem; flex-wrap:wrap;
-  }
+  /* Header / tabs */
+  header{position:sticky; top:0; z-index:20; background:rgba(250,250,247,.88); backdrop-filter:saturate(120%) blur(8px); border-bottom:1px solid var(--hairline);}
+  .bar{max-width:72rem; margin:0 auto; padding:.9rem var(--pad); display:flex; align-items:baseline; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;}
   .wordmark{font-family:"Newsreader", serif; font-size:1.3rem; font-weight:500; letter-spacing:.01em; white-space:nowrap;}
   .wordmark a{color:var(--ink);}
   .wordmark a:hover{text-decoration:none; color:var(--pine);}
-
   nav{display:flex; gap:.35rem; flex-wrap:wrap;}
-  nav a{
-    color:var(--muted); font-size:.95rem; font-weight:500;
-    padding:.35rem .1rem; border-bottom:2px solid transparent;
-    transition:color .18s ease, border-color .18s ease;
-  }
+  nav a{color:var(--muted); font-size:.95rem; font-weight:500; padding:.35rem .1rem; border-bottom:2px solid transparent; transition:color .18s ease, border-color .18s ease;}
   nav a + a{margin-left:1rem;}
   nav a:hover{color:var(--ink); text-decoration:none;}
   nav a.is-active{color:var(--pine); border-bottom-color:var(--pine);}
 
-  /* ---------- Layout ---------- */
+  /* Layout */
   main{max-width:72rem; margin:0 auto; padding:0 var(--pad);}
   .panel{display:none; padding:clamp(2.5rem,7vw,4.5rem) 0 4rem;}
   .panel.is-active{display:block; animation:fade .35s ease both;}
   @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
-
   h1,h2,h3{font-family:"Newsreader", serif; font-weight:500; line-height:1.15;}
 
-  /* ---------- About ---------- */
+  /* About */
   .about-grid{display:grid; grid-template-columns:1fr 210px; gap:2.75rem; align-items:start;}
   .lede{max-width:var(--measure);}
   .lede h1{font-size:clamp(2.6rem, 6.5vw, 4.2rem); margin:0 0 .3rem; letter-spacing:-.01em;}
   .role{font-family:"Newsreader", serif; font-style:italic; font-size:clamp(1.15rem,2.5vw,1.4rem); color:var(--pine); margin:0 0 1.6rem;}
   .lede p{margin:0 0 1.1rem; color:var(--ink);}
 
-  /* Portrait: drop a file named photo.jpg next to index.html and it appears here.
-     Until then, a tidy placeholder shows instead. */
   .portrait{margin:0;}
-  .portrait img{
-    width:100%; aspect-ratio:4/5; object-fit:cover;
-    border-radius:6px; border:1px solid var(--hairline-strong);
-    display:block;
-  }
-  .portrait--empty{
-    width:100%; aspect-ratio:4/5;
-    border:1.5px dashed var(--hairline-strong); border-radius:6px;
-    display:flex; align-items:center; justify-content:center; text-align:center;
-    color:var(--faint); font-size:.85rem; padding:1rem;
-  }
+  .portrait img{width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:6px; border:1px solid var(--hairline-strong); display:block;}
+  .portrait--empty{width:100%; aspect-ratio:4/5; border:1.5px dashed var(--hairline-strong); border-radius:6px; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--faint); font-size:.85rem; padding:1rem;}
 
   h2.section{font-size:1.9rem; margin:0 0 1.6rem; padding-bottom:.6rem; border-bottom:1px solid var(--hairline-strong);}
   .panel > p, .panel .prose{max-width:var(--measure);}
@@ -113,18 +81,20 @@
   .tags{list-style:none; padding:0; margin:1.2rem 0 0; display:flex; flex-wrap:wrap; gap:.5rem;}
   .tags li{font-size:.88rem; color:var(--muted); border:1px solid var(--hairline-strong); border-radius:100px; padding:.25rem .8rem;}
 
-  /* ---------- Timeline (CV) ---------- */
+  /* Timeline (CV) */
   .timeline{margin:0; padding:0; list-style:none; max-width:var(--measure);}
   .entry{display:grid; grid-template-columns:9rem 1fr; gap:1.4rem; padding:1.4rem 0; border-top:1px solid var(--hairline);}
   .entry:first-child{border-top:0; padding-top:0;}
   .when{color:var(--faint); font-size:.9rem; font-variant-numeric:tabular-nums; padding-top:.2rem;}
-  .what h3{font-size:1.2rem; margin:0 0 .2rem;}
-  .where{color:var(--pine); font-size:.98rem; margin:0 0 .5rem;}
+  .what h3{font-size:1.2rem; margin:0 0 .25rem;}
+  /* Institution: bold, hyperlinked subtitle */
+  .where{font-size:.98rem; margin:0 0 .5rem; color:var(--muted);}
+  .where a{color:var(--pine); font-weight:600;}
+  .where a:hover{color:var(--pine-deep);}
   .what p{margin:0; color:var(--muted); font-size:.98rem;}
 
   .cta{display:inline-flex; align-items:center; gap:.5rem; margin-top:2.4rem; background:var(--pine); color:#fff; padding:.7rem 1.3rem; border-radius:4px; font-weight:500; font-size:.98rem;}
   .cta:hover{background:var(--pine-deep); color:#fff; text-decoration:none;}
-
   .subhead{font-family:"Newsreader",serif; font-size:1.35rem; font-weight:500; margin:3rem 0 1.1rem;}
 
   .skills{max-width:var(--measure); margin:0;}
@@ -133,7 +103,7 @@
   .skills dt{color:var(--faint); font-size:.9rem; padding-top:.1rem;}
   .skills dd{margin:0; color:var(--ink); font-size:.98rem;}
 
-  /* ---------- Projects ---------- */
+  /* Projects */
   .project{max-width:var(--measure); padding:1.8rem 0; border-top:1px solid var(--hairline);}
   .project:first-of-type{border-top:0; padding-top:.4rem;}
   .project h3{font-size:1.35rem; margin:0 0 .25rem;}
@@ -141,24 +111,27 @@
   .project p{margin:0 0 .8rem; color:var(--ink);}
   .project .links{margin-top:.4rem; font-size:.92rem;}
 
-  /* ---------- Publications & conferences ---------- */
+  /* Publications */
   .refs{list-style:none; margin:0; padding:0; max-width:var(--measure); counter-reset:ref;}
-  .refs li{padding:1.2rem 0; border-top:1px solid var(--hairline); padding-left:2.4rem; position:relative;}
+  .refs li{padding:1.3rem 0; border-top:1px solid var(--hairline); padding-left:2.4rem; position:relative;}
   .refs li:first-child{border-top:0;}
-  .refs li::before{counter-increment:ref; content:"["counter(ref)"]"; position:absolute; left:0; top:1.2rem; color:var(--faint); font-variant-numeric:tabular-nums; font-size:.9rem;}
+  .refs li::before{counter-increment:ref; content:"["counter(ref)"]"; position:absolute; left:0; top:1.3rem; color:var(--faint); font-variant-numeric:tabular-nums; font-size:.9rem;}
   .refs .you{color:var(--ink); font-weight:600;}
+  .refs .title-txt{color:var(--ink);}
   .refs .venue{font-family:"Newsreader",serif; font-style:italic; color:var(--muted);}
   .refs .year{color:var(--faint);}
-  .refs .reflinks{margin-top:.35rem; font-size:.9rem; display:flex; gap:1rem; flex-wrap:wrap;}
+  .refs .tag{display:inline-block; font-size:.72rem; color:var(--pine); border:1px solid var(--hairline-strong); border-radius:4px; padding:.05rem .45rem; margin-left:.35rem; vertical-align:middle;}
+  .refs .reflinks{margin-top:.45rem; font-size:.9rem; display:flex; gap:1rem; flex-wrap:wrap;}
 
+  /* Conferences */
   .talk{max-width:var(--measure); display:grid; grid-template-columns:7rem 1fr; gap:1.3rem; padding:1.3rem 0; border-top:1px solid var(--hairline);}
   .talk:first-of-type{border-top:0;}
   .talk .kind{font-size:.78rem; color:var(--pine); font-weight:600; letter-spacing:.02em; padding-top:.15rem;}
-  .talk h3{font-size:1.12rem; margin:0 0 .25rem; font-family:"Hanken Grotesk",sans-serif; font-weight:600;}
+  .talk h3{font-size:1.12rem; margin:0 0 .3rem; font-family:"Hanken Grotesk",sans-serif; font-weight:600;}
   .talk .event{color:var(--muted); font-size:.95rem; margin:0;}
   .talk .event .date{color:var(--faint);}
 
-  /* ---------- Footer ---------- */
+  /* Footer */
   footer{border-top:1px solid var(--hairline); margin-top:2rem; padding:2.5rem var(--pad) 3rem;}
   .foot{max-width:72rem; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap; color:var(--faint); font-size:.9rem;}
   .foot nav{gap:1.2rem;}
@@ -174,7 +147,6 @@
     .skills div{grid-template-columns:1fr; gap:.2rem;}
     .skills dt{padding-top:0;}
   }
-
   @media (prefers-reduced-motion:reduce){
     *{scroll-behavior:auto !important;}
     .panel.is-active{animation:none;}
@@ -184,9 +156,6 @@
 
 <body>
 
-<!-- ============================================================
-     HEADER + TABS  (rename/reorder here; each href must match a <section id="...">)
-     ============================================================ -->
 <header>
   <div class="bar">
     <div class="wordmark"><a href="#about">Estelle Renard-Dausset</a></div>
@@ -234,15 +203,17 @@
           <li><a href="https://www.linkedin.com/in/estelle-renard-dausset">
             <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 12v5"/></svg>
             LinkedIn</a></li>
-          <!-- Add your GitHub / Google Scholar once you have the links -->
-          <li><a href="https://github.com/yourusername">
+          <li><a href="https://github.com/EstelleRD">
             <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.7A5.2 5.2 0 0 0 20 4.8 4.9 4.9 0 0 0 19.9 1S18.7.6 16 2.5a13.4 13.4 0 0 0-7 0C6.3.6 5.1 1 5.1 1A4.9 4.9 0 0 0 5 4.8a5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.1 6.4 6.1 6.7a3.4 3.4 0 0 0-.9 2.6V22"/></svg>
             GitHub</a></li>
+          <!-- Add Google Scholar when ready:
+          <li><a href="https://scholar.google.com/citations?user=YOURID">
+            <svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
+            Google Scholar</a></li> -->
         </ul>
       </div>
 
-      <!-- PHOTO: save your picture as photo.jpg in the same folder as index.html.
-           If no file is found, the dashed placeholder below shows instead. -->
+      <!-- PHOTO: save your picture as photo.jpg beside index.html. Placeholder shows until then. -->
       <figure class="portrait">
         <img src="photo.jpg" alt="Estelle Renard-Dausset"
              onerror="this.outerHTML='&lt;div class=&quot;portrait--empty&quot;&gt;Add a file named photo.jpg beside index.html&lt;/div&gt;'">
@@ -260,7 +231,7 @@
         <div class="when">Feb 2024 — now</div>
         <div class="what">
           <h3>Principal Biostatistician</h3>
-          <p class="where">ISGlobal — Barcelona Institute for Global Health, Barcelona</p>
+          <p class="where"><a href="https://www.isglobal.org">ISGlobal — Barcelona Institute for Global Health</a>, Barcelona</p>
           <p>Design, code and interpret advanced statistical analyses of high-dimensional
           multi-omics data to identify clinically relevant biomarkers across large population
           cohorts. Author peer-reviewed publications, present at major conferences, and
@@ -272,7 +243,7 @@
         <div class="when">Mar — Aug 2023</div>
         <div class="what">
           <h3>Master Thesis Researcher</h3>
-          <p class="where">Harvard Medical School, Dept. of Biomedical Informatics, Boston</p>
+          <p class="where"><a href="https://dbmi.hms.harvard.edu">Harvard Medical School, Dept. of Biomedical Informatics</a>, Boston</p>
           <p>Led a data analysis project integrating brain MRI phenotypes from 43,000+
           participants with clinical, cardiovascular and genetic predictors to identify
           determinants of brain health. Awarded highest grade (6/6), a $12,000 scholarship,
@@ -283,7 +254,7 @@
         <div class="when">Sep 2022 — Feb 2023</div>
         <div class="what">
           <h3>Machine Learning Intern, Precision Oncology</h3>
-          <p class="where">Novigenix SA, Lausanne</p>
+          <p class="where"><a href="https://www.novigenix.com">Novigenix SA</a>, Lausanne</p>
           <p>Developed blood-based (liquid biopsy) RNA-seq analysis pipelines supporting
           non-invasive cancer prediction and therapeutic decision-making in precision oncology.</p>
         </div>
@@ -292,7 +263,7 @@
         <div class="when">Feb — Jul 2022</div>
         <div class="what">
           <h3>Semester Intern, In-Field Genetic Sequencing</h3>
-          <p class="where">GenoRobotics, Lausanne</p>
+          <p class="where"><a href="https://genorobotics.org">GenoRobotics</a>, Lausanne</p>
           <p>Improved portable genetic sequencing and in-field DNA extraction workflows for
           biodiversity monitoring, working hands-on with molecular diagnostic and sequencing
           technologies.</p>
@@ -302,7 +273,7 @@
         <div class="when">Sep — Dec 2021</div>
         <div class="what">
           <h3>Semester Intern, Neuroscience</h3>
-          <p class="where">EPFL Laboratory of Behavioral Genetics, Lausanne</p>
+          <p class="where"><a href="https://www.epfl.ch">EPFL Laboratory of Behavioral Genetics</a>, Lausanne</p>
           <p>Investigated stress-related molecular mechanisms in a genetic animal model of
           PTSD, applying laboratory and immunohistochemistry techniques.</p>
         </div>
@@ -315,7 +286,7 @@
         <div class="when">2020 — 2023</div>
         <div class="what">
           <h3>MSc, Life Sciences Engineering</h3>
-          <p class="where">EPFL (Swiss Federal Institute of Technology), Lausanne</p>
+          <p class="where"><a href="https://www.epfl.ch">EPFL — Swiss Federal Institute of Technology</a>, Lausanne</p>
           <p>Average 5.53/6 · Certificate of Excellence (Top 5%) · Neuroscience &amp;
           Neuroengineering specialization · thesis at Harvard Medical School.</p>
         </div>
@@ -324,7 +295,7 @@
         <div class="when">2019 — 2020</div>
         <div class="what">
           <h3>Exchange Year</h3>
-          <p class="where">KTH Royal Institute of Technology, Stockholm</p>
+          <p class="where"><a href="https://www.kth.se">KTH Royal Institute of Technology</a>, Stockholm</p>
           <p>Third Bachelor year on a highly selective exchange · scholarship of 2,000 CHF.</p>
         </div>
       </li>
@@ -332,7 +303,7 @@
         <div class="when">2017 — 2020</div>
         <div class="what">
           <h3>BSc, Life Sciences Engineering</h3>
-          <p class="where">EPFL (Swiss Federal Institute of Technology), Lausanne</p>
+          <p class="where"><a href="https://www.epfl.ch">EPFL — Swiss Federal Institute of Technology</a>, Lausanne</p>
           <p>Average 4.87/6.</p>
         </div>
       </li>
@@ -346,7 +317,6 @@
       <div><dt>Languages</dt><dd>French (fluent) · English (fluent) · Spanish (C1)</dd></div>
     </dl>
 
-    <!-- Put your CV file in the repo named cv.pdf and this button downloads it -->
     <a class="cta" href="cv.pdf" download>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
       Download full CV (PDF)
@@ -362,7 +332,6 @@
       <p class="meta">2020 · Deep learning, image segmentation</p>
       <p>Built a deep learning model for automated segmentation of blood microscopy images
       to enable AI-based diagnosis of sickle cell disease.</p>
-      <!-- Add a link with: <a href="https://...">Code</a> -->
       <ul class="links"><li><a href="#">Code</a></li><li><a href="#">Report</a></li></ul>
     </article>
 
@@ -383,83 +352,92 @@
     </article>
   </section>
 
-  <!-- ===================== PUBLICATIONS ===================== -->
+  <!-- ===================== PUBLICATIONS (most recent first) ===================== -->
   <section id="publications" class="panel" aria-labelledby="pubs-h">
     <h2 id="pubs-h" class="section">Publications</h2>
-    <!-- Replace the placeholders below with your real papers.
-         Copy an <li> block to add another. Bold your own name with <span class="you">…</span> -->
     <ol class="refs">
       <li>
-        <span class="you">Renard-Dausset, E.</span>, Coauthor A., &amp; Coauthor B.
-        “Title of the paper as it appears in print.”
-        <span class="venue">Journal Name</span>, <span class="year">2025.</span>
-        <div class="reflinks"><a href="#">PDF</a><a href="#">DOI</a><a href="#">Code</a></div>
+        de Leeuw V.C., Maitre L., van Oostrom C.T.M., <span class="you">Renard-Dausset E.</span>, et al.
+        <span class="title-txt">“Integrated epidemiology and toxicology reveals the protective effects of TMAO against chemical neurotoxicity in children.”</span>
+        <span class="venue">medRxiv</span>, <span class="year">2026.</span><span class="tag">Preprint</span>
+        <div class="reflinks"><a href="https://doi.org/10.64898/2026.07.02.26357012">DOI</a></div>
       </li>
       <li>
-        Coauthor A., <span class="you">Renard-Dausset, E.</span>, &amp; Coauthor C.
-        “Another paper title.”
-        <span class="venue">Journal Name</span>, <span class="year">2024.</span>
-        <div class="reflinks"><a href="#">PDF</a><a href="#">DOI</a></div>
+        Joseph G., <span class="you">Renard-Dausset E.</span>, Invernizzi A., et al.
+        <span class="title-txt">“Association between per- and polyfluoroalkyl exposures and postpartum psychological symptoms: evidence from two population-based pregnancy cohorts.”</span>
+        <span class="venue">Environmental Research</span>, <span class="year">2026.</span>
+        <div class="reflinks"><a href="https://doi.org/10.1016/j.envres.2026.124923">DOI</a></div>
+      </li>
+      <li>
+        <span class="you">Renard-Dausset E.</span>, Laveriano-Santos E.P., Bustamante M., et al.
+        <span class="title-txt">“Prenatal exposure to maternal steroid hormones and child neurodevelopment: evidence for sex-specific effects in a longitudinal birth cohort.”</span>
+        <span class="venue">Research Square</span>, <span class="year">2026.</span><span class="tag">Preprint · under review</span>
+        <div class="reflinks">
+          <a href="https://doi.org/10.21203/rs.3.rs-9198207/v1">DOI</a>
+          <a href="https://github.com/EstelleRD/prenatal-steroids-neurodevelopment">Code</a>
+        </div>
+      </li>
+      <li>
+        Laveriano-Santos E.P., <span class="you">Renard-Dausset E.</span>, Bustamante M., et al.
+        <span class="title-txt">“Mapping of determinants of urinary sex steroid metabolites during late pregnancy: results from two Spanish cohorts.”</span>
+        <span class="venue">International Journal of Molecular Sciences</span>, <span class="year">2025.</span>
+        <div class="reflinks"><a href="https://doi.org/10.3390/ijms262311598">DOI</a></div>
       </li>
     </ol>
   </section>
 
-  <!-- ===================== CONFERENCES ===================== -->
+  <!-- ===================== CONFERENCES (most recent first) ===================== -->
   <section id="conferences" class="panel" aria-labelledby="conf-h">
     <h2 id="conf-h" class="section">Talks &amp; Conferences</h2>
-
-    <!-- HYPERLINK PATTERN: wrap the event name in <a href="https://...">…</a>.
-         The links below point to each society's main site — swap in the exact
-         congress page when you have it. -->
-    <article class="talk">
-      <div class="kind">Conference</div>
-      <div>
-        <h3>Presentation of multi-omics biomarker findings</h3>
-        <p class="event"><a href="https://www.ecnp.eu">ECNP Congress</a> ·
-        <span class="date">2025</span></p>
-      </div>
-    </article>
+    <p class="prose" style="color:var(--muted); margin:0 0 2rem;">
+      Selected venues where I have presented my work.</p>
 
     <article class="talk">
-      <div class="kind">Conference</div>
+      <div class="kind">Symposium</div>
       <div>
-        <h3>Determinants of brain health across large cohorts</h3>
-        <p class="event"><a href="https://dohadsoc.org">DOHaD World Congress</a> ·
-        <span class="date">2025</span></p>
-      </div>
-    </article>
-
-    <article class="talk">
-      <div class="kind">Conference</div>
-      <div>
-        <h3>Exposomics and brain health</h3>
-        <!-- Paste the event's URL between the quotes when available -->
-        <p class="event"><a href="#">Global Exposomics for Brain Health</a> ·
+        <h3>Presented research on exposomics and brain health</h3>
+        <!-- Paste the event's official URL between the quotes when you have it -->
+        <p class="event"><a href="#">Global Exposomics for Brain Health Symposium</a> ·
         <span class="date">2026</span></p>
+      </div>
+    </article>
+
+    <article class="talk">
+      <div class="kind">Congress</div>
+      <div>
+        <h3>Presented biomarker research in neuropsychopharmacology</h3>
+        <p class="event">The 38th <a href="https://www.ecnp.eu">European College of Neuropsychopharmacology (ECNP)</a> Congress ·
+        <span class="date">2025</span></p>
+      </div>
+    </article>
+
+    <article class="talk">
+      <div class="kind">Congress</div>
+      <div>
+        <h3>Presented developmental-origins research</h3>
+        <p class="event">International Society for <a href="https://dohadsoc.org">Developmental Origins of Health and Disease (DOHaD Society)</a> Congress ·
+        <span class="date">2025</span></p>
       </div>
     </article>
   </section>
 
 </main>
 
-<!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="foot">
     <span>© <span id="year"></span> Estelle Renard-Dausset</span>
     <nav aria-label="Elsewhere">
       <a href="mailto:estellerenarddausset@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/estelle-renard-dausset">LinkedIn</a>
-      <a href="https://github.com/yourusername">GitHub</a>
+      <a href="https://github.com/EstelleRD">GitHub</a>
     </nav>
   </div>
 </footer>
 
 <script>
-  // Tab switching via URL hash (tabs are shareable + survive refresh)
   const tabs = Array.from(document.querySelectorAll('#tabs a'));
   const panels = Array.from(document.querySelectorAll('.panel'));
   const ids = panels.map(p => p.id);
-
   function show(id){
     if(!ids.includes(id)) id = ids[0];
     panels.forEach(p => {
@@ -477,7 +455,6 @@
   function fromHash(){ show((location.hash || '#about').slice(1)); }
   window.addEventListener('hashchange', fromHash);
   fromHash();
-
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
