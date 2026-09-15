@@ -114,25 +114,26 @@
   .project .links{margin-top:.4rem; font-size:.92rem;}
 
   /* Publications */
-  .refs{list-style:none; margin:0; padding:0; max-width:var(--measure); counter-reset:ref;}
-  .refs li{padding:1.3rem 0; border-top:1px solid var(--hairline); padding-left:2.4rem; position:relative;}
-  .refs li:first-child{border-top:0;}
-  .refs li::before{counter-increment:ref; content:"["counter(ref)"]"; position:absolute; left:0; top:1.3rem; color:var(--faint); font-variant-numeric:tabular-nums; font-size:.9rem;}
-  .refs .you{color:var(--ink); font-weight:600;}
-  .refs .title-txt{color:var(--ink);}
-  .refs .venue{font-family:"Newsreader",serif; font-style:italic; color:var(--muted);}
-  .refs .year{color:var(--faint);}
-  .refs .tag{display:inline-block; font-size:.72rem; color:var(--pine); border:1px solid var(--hairline-strong); border-radius:4px; padding:.05rem .45rem; margin-left:.35rem; vertical-align:middle;}
-  .refs .reflinks{margin-top:.45rem; font-size:.9rem; display:flex; gap:1rem; flex-wrap:wrap;}
+  .pub{max-width:var(--measure); padding:1.6rem 0; border-top:1px solid var(--hairline);}
+  .pub:first-of-type{border-top:0; padding-top:.2rem;}
+  .pub h3{font-size:1.22rem; margin:0 0 .4rem; font-family:"Newsreader",serif; font-weight:500; line-height:1.3;}
+  .pub h3 a{color:var(--link);}
+  .pub h3 a:hover{color:var(--link-hover); text-decoration:underline; text-underline-offset:3px;}
+  .pub-meta{margin:0 0 .55rem; font-size:.88rem; color:var(--muted); line-height:1.5;}
+  .pub-meta .you{color:var(--ink); font-weight:600;}
+  .pub-meta .venue{font-family:"Newsreader",serif; font-style:italic;}
+  .pub-meta .year{color:var(--faint);}
+  .pub-desc{margin:0 0 .65rem; font-size:.98rem; color:var(--ink);}
+  .tag{display:inline-block; font-size:.72rem; color:var(--pine); border:1px solid var(--hairline-strong); border-radius:4px; padding:.05rem .45rem; margin-left:.35rem; vertical-align:middle; white-space:nowrap;}
+  .reflinks{font-size:.9rem; display:flex; gap:1.2rem; flex-wrap:wrap;}
 
   /* Conferences */
-  .talk{max-width:var(--measure); display:grid; grid-template-columns:7rem 1fr; gap:1.3rem; padding:1.3rem 0; border-top:1px solid var(--hairline);}
+  .talk{max-width:var(--measure); display:grid; grid-template-columns:7rem 1fr; gap:1.3rem; padding:1rem 0; border-top:1px solid var(--hairline);}
   .talk:first-of-type{border-top:0;}
-  .talk .kind{font-size:.78rem; color:var(--pine); font-weight:600; letter-spacing:.02em; padding-top:.15rem;}
-  .talk h3{font-size:1.12rem; margin:0 0 .2rem; font-family:"Hanken Grotesk",sans-serif; font-weight:600;}
+  .talk .kind{font-size:.9rem; color:var(--faint); font-variant-numeric:tabular-nums; padding-top:.15rem;}
+  .talk h3{font-size:1.08rem; margin:0; font-family:"Hanken Grotesk",sans-serif; font-weight:600;}
   .talk h3 a{color:var(--link);}
   .talk h3 a:hover{color:var(--link-hover); text-decoration:underline; text-underline-offset:3px;}
-  .talk-note{color:var(--faint); font-size:.95rem; margin:.15rem 0 0;}
 
   /* Footer */
   footer{border-top:1px solid var(--hairline); margin-top:2rem; padding:2.5rem var(--pad) 3rem;}
@@ -146,7 +147,7 @@
     .portrait{order:-1; width:130px;}
     .entry{grid-template-columns:1fr; gap:.3rem;}
     .when{padding-top:0;}
-    .talk{grid-template-columns:1fr; gap:.3rem;}
+    .talk{grid-template-columns:1fr; gap:.15rem;}
     .skills div{grid-template-columns:1fr; gap:.2rem;}
     .skills dt{padding-top:0;}
   }
@@ -166,8 +167,7 @@
       <a href="#about">About</a>
       <a href="#cv">CV</a>
       <a href="#projects">Projects</a>
-      <a href="#publications">Publications</a>
-      <a href="#conferences">Conferences</a>
+      <a href="#publications">Publications &amp; Conferences</a>
     </nav>
   </div>
 </header>
@@ -355,52 +355,61 @@
     </article>
   </section>
 
-  <!-- ===================== PUBLICATIONS (most recent first) ===================== -->
+  <!-- ============ PUBLICATIONS & CONFERENCES ============ -->
   <section id="publications" class="panel" aria-labelledby="pubs-h">
-    <h2 id="pubs-h" class="section">Publications</h2>
-    <ol class="refs">
-      <li>
-        de Leeuw V.C., Maitre L., van Oostrom C.T.M., <span class="you">Renard-Dausset E.</span>, et al.
-        <span class="title-txt">“Integrated epidemiology and toxicology reveals the protective effects of TMAO against chemical neurotoxicity in children.”</span>
-        <span class="venue">medRxiv</span>, <span class="year">2026.</span><span class="tag">Preprint</span>
-        <div class="reflinks"><a href="https://doi.org/10.64898/2026.07.02.26357012">DOI</a></div>
-      </li>
-      <li>
-        Joseph G., <span class="you">Renard-Dausset E.</span>, Invernizzi A., et al.
-        <span class="title-txt">“Association between per- and polyfluoroalkyl exposures and postpartum psychological symptoms: evidence from two population-based pregnancy cohorts.”</span>
-        <span class="venue">Environmental Research</span>, <span class="year">2026.</span>
-        <div class="reflinks"><a href="https://doi.org/10.1016/j.envres.2026.124923">DOI</a></div>
-      </li>
-      <li>
-        <span class="you">Renard-Dausset E.</span>, Laveriano-Santos E.P., Bustamante M., et al.
-        <span class="title-txt">“Prenatal exposure to maternal steroid hormones and child neurodevelopment: evidence for sex-specific effects in a longitudinal birth cohort.”</span>
-        <span class="venue">Research Square</span>, <span class="year">2026.</span><span class="tag">Preprint · under review</span>
-        <div class="reflinks">
-          <a href="https://doi.org/10.21203/rs.3.rs-9198207/v1">DOI</a>
-          <a href="https://github.com/EstelleRD/prenatal-steroids-neurodevelopment">Code</a>
-        </div>
-      </li>
-      <li>
-        Laveriano-Santos E.P., <span class="you">Renard-Dausset E.</span>, Bustamante M., et al.
-        <span class="title-txt">“Mapping of determinants of urinary sex steroid metabolites during late pregnancy: results from two Spanish cohorts.”</span>
-        <span class="venue">International Journal of Molecular Sciences</span>, <span class="year">2025.</span>
-        <div class="reflinks"><a href="https://doi.org/10.3390/ijms262311598">DOI</a></div>
-      </li>
-    </ol>
-  </section>
+    <h2 id="pubs-h" class="section">Publications &amp; Conferences</h2>
 
-  <!-- ===================== CONFERENCES (most recent first) ===================== -->
-  <section id="conferences" class="panel" aria-labelledby="conf-h">
-    <h2 id="conf-h" class="section">Talks &amp; Conferences</h2>
-    <p class="prose" style="color:var(--muted); margin:0 0 2rem;">
-      Selected venues where I have presented my work.</p>
+    <!-- Each publication: the TITLE links to the paper; authors + journal sit below,
+         then a one-line summary, then DOI and Code links. Fill the Code href="" later. -->
+
+    <article class="pub">
+      <h3><a href="https://doi.org/10.64898/2026.07.02.26357012">Integrated epidemiology and toxicology reveals the protective effects of TMAO against chemical neurotoxicity in children</a></h3>
+      <p class="pub-meta">de Leeuw V.C., Maitre L., van Oostrom C.T.M., <span class="you">Renard-Dausset E.</span>, et al. · <span class="venue">medRxiv</span>, <span class="year">2026</span><span class="tag">Preprint</span></p>
+      <p class="pub-desc">How the gut-derived metabolite TMAO appears to shield children's developing brains from the neurotoxic effects of environmental chemical exposures.</p>
+      <div class="reflinks">
+        <a href="https://doi.org/10.64898/2026.07.02.26357012">DOI</a>
+        <a href="#">Code</a>
+      </div>
+    </article>
+
+    <article class="pub">
+      <h3><a href="https://doi.org/10.1016/j.envres.2026.124923">Association between per- and polyfluoroalkyl exposures and postpartum psychological symptoms: evidence from two population-based pregnancy cohorts</a></h3>
+      <p class="pub-meta">Joseph G., <span class="you">Renard-Dausset E.</span>, Invernizzi A., et al. · <span class="venue">Environmental Research</span>, <span class="year">2026</span></p>
+      <p class="pub-desc">Whether prenatal exposure to PFAS ("forever chemicals") is associated with mothers' psychological symptoms in the months after giving birth.</p>
+      <div class="reflinks">
+        <a href="https://doi.org/10.1016/j.envres.2026.124923">DOI</a>
+        <a href="#">Code</a>
+      </div>
+    </article>
+
+    <article class="pub">
+      <h3><a href="https://doi.org/10.21203/rs.3.rs-9198207/v1">Prenatal exposure to maternal steroid hormones and child neurodevelopment: evidence for sex-specific effects in a longitudinal birth cohort</a></h3>
+      <p class="pub-meta"><span class="you">Renard-Dausset E.</span>, Laveriano-Santos E.P., Bustamante M., et al. · <span class="venue">Research Square</span>, <span class="year">2026</span><span class="tag">Preprint · under review</span></p>
+      <p class="pub-desc">How maternal steroid hormones during pregnancy relate to child neurodevelopment, with distinct patterns emerging for boys and girls.</p>
+      <div class="reflinks">
+        <a href="https://doi.org/10.21203/rs.3.rs-9198207/v1">DOI</a>
+        <a href="https://github.com/EstelleRD/prenatal-steroids-neurodevelopment">Code</a>
+      </div>
+    </article>
+
+    <article class="pub">
+      <h3><a href="https://doi.org/10.3390/ijms262311598">Mapping of determinants of urinary sex steroid metabolites during late pregnancy: results from two Spanish cohorts</a></h3>
+      <p class="pub-meta">Laveriano-Santos E.P., <span class="you">Renard-Dausset E.</span>, Bustamante M., et al. · <span class="venue">International Journal of Molecular Sciences</span>, <span class="year">2025</span></p>
+      <p class="pub-desc">Which maternal and lifestyle factors shape urinary sex-steroid metabolite levels during late pregnancy, across two Spanish cohorts.</p>
+      <div class="reflinks">
+        <a href="https://doi.org/10.3390/ijms262311598">DOI</a>
+        <a href="#">Code</a>
+      </div>
+    </article>
+
+    <!-- ---------- Conferences ---------- -->
+    <h3 class="subhead" id="conferences">Conferences</h3>
 
     <article class="talk">
       <div class="kind">2026</div>
       <div>
         <!-- Paste the event's official URL in href="" when you have it -->
         <h3><a href="#">Global Exposomics for Brain Health Symposium</a></h3>
-        <p class="talk-note">Your talk or poster title — replace this line.</p>
       </div>
     </article>
 
@@ -408,7 +417,6 @@
       <div class="kind">2025</div>
       <div>
         <h3><a href="https://www.ecnp.eu">38th European College of Neuropsychopharmacology (ECNP) Congress</a></h3>
-        <p class="talk-note">Your talk or poster title — replace this line.</p>
       </div>
     </article>
 
@@ -416,7 +424,6 @@
       <div class="kind">2025</div>
       <div>
         <h3><a href="https://dohadsoc.org">International Society for Developmental Origins of Health and Disease (DOHaD Society) Congress</a></h3>
-        <p class="talk-note">Your talk or poster title — replace this line.</p>
       </div>
     </article>
   </section>
