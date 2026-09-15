@@ -64,7 +64,9 @@
   /* About */
   .about-grid{display:grid; grid-template-columns:1fr 210px; gap:2.75rem; align-items:start;}
   .lede{max-width:var(--measure);}
-  .lede h1{font-size:clamp(2.6rem, 6.5vw, 4.2rem); margin:0 0 .3rem; letter-spacing:-.01em;}
+  .lede h1{font-size:clamp(2.4rem, 6.5vw, 4.2rem); margin:0 0 .3rem; letter-spacing:-.01em;}
+  .lede h1 .given, .lede h1 .surname{display:block;}
+  .lede h1 .surname{white-space:nowrap;}
   .role{font-family:"Newsreader", serif; font-style:italic; font-size:clamp(1.15rem,2.5vw,1.4rem); color:var(--pine); margin:0 0 1.6rem;}
   .lede p{margin:0 0 1.1rem; color:var(--ink);}
 
@@ -135,6 +137,13 @@
   .talk h3 a{color:var(--link);}
   .talk h3 a:hover{color:var(--link-hover); text-decoration:underline; text-underline-offset:3px;}
 
+  /* Sub-navigation within Publications & Conferences */
+  .subnav{position:sticky; top:var(--header-h, 3.4rem); z-index:15; display:flex; gap:1.5rem; margin:0 0 .5rem; padding:.7rem 0; flex-wrap:wrap; background:rgba(250,250,247,.92); backdrop-filter:saturate(120%) blur(8px); border-bottom:1px solid var(--hairline);}
+  .subnav button{font:inherit; cursor:pointer; background:none; border:0; padding:.2rem 0; color:var(--muted); font-weight:500; border-bottom:2px solid transparent; transition:color .18s ease, border-color .18s ease;}
+  .subnav button:hover{color:var(--ink);}
+  .subnav button.is-active{color:var(--pine); border-bottom-color:var(--pine);}
+  #pub{margin-top:1.2rem;}
+
   /* Footer */
   footer{border-top:1px solid var(--hairline); margin-top:2rem; padding:2.5rem var(--pad) 3rem;}
   .foot{max-width:72rem; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap; color:var(--faint); font-size:.9rem;}
@@ -178,7 +187,7 @@
   <section id="about" class="panel" aria-labelledby="about-h">
     <div class="about-grid">
       <div class="lede">
-        <h1 id="about-h">Estelle Renard-Dausset</h1>
+        <h1 id="about-h"><span class="given">Estelle</span><span class="surname">Renard-Dausset</span></h1>
         <p class="role">Biomarker Biostatistician — EPFL Life Sciences Engineer</p>
 
         <p>I am a principal biostatistician in biomedical research with expertise in
@@ -359,6 +368,14 @@
   <section id="publications" class="panel" aria-labelledby="pubs-h">
     <h2 id="pubs-h" class="section">Publications &amp; Conferences</h2>
 
+    <!-- Sub-navigation: jumps to each part without leaving this tab -->
+    <nav class="subnav" aria-label="Jump to">
+      <button type="button" data-target="pub">Publications</button>
+      <button type="button" data-target="conferences">Conferences</button>
+    </nav>
+
+    <h3 class="subhead" id="pub">Publications</h3>
+
     <!-- Each publication: the TITLE links to the paper; authors + journal sit below,
          then a one-line summary, then DOI and Code links. Fill the Code href="" later. -->
 
@@ -474,6 +491,46 @@
   function fromHash(){ show((location.hash || '#about').slice(1)); }
   window.addEventListener('hashchange', fromHash);
   fromHash();
+
+  // Sub-navigation: sticky, with smooth-scroll + active-part highlighting (no hash change)
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const siteHeader = document.querySelector('header');
+  const subnav = document.querySelector('.subnav');
+
+  function setHeaderVar(){
+    const h = siteHeader ? siteHeader.offsetHeight : 56;
+    document.documentElement.style.setProperty('--header-h', h + 'px');
+  }
+  function stickyOffset(){
+    return (siteHeader ? siteHeader.offsetHeight : 0) + (subnav ? subnav.offsetHeight : 0) + 14;
+  }
+
+  const parts = subnav ? [
+    {btn: subnav.querySelector('[data-target="pub"]'), el: document.getElementById('pub')},
+    {btn: subnav.querySelector('[data-target="conferences"]'), el: document.getElementById('conferences')}
+  ] : [];
+
+  parts.forEach(p => {
+    p.btn.addEventListener('click', () => {
+      if(!p.el) return;
+      const y = p.el.getBoundingClientRect().top + window.scrollY - stickyOffset();
+      window.scrollTo({top: y, behavior: reduceMotion ? 'auto' : 'smooth'});
+    });
+  });
+
+  function updateActivePart(){
+    if(!parts.length) return;
+    const line = stickyOffset() + 8;
+    let active = parts[0];
+    parts.forEach(p => { if(p.el && p.el.getBoundingClientRect().top <= line) active = p; });
+    parts.forEach(p => p.btn.classList.toggle('is-active', p === active));
+  }
+
+  setHeaderVar();
+  updateActivePart();
+  window.addEventListener('scroll', updateActivePart, {passive:true});
+  window.addEventListener('resize', () => { setHeaderVar(); updateActivePart(); });
+
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
