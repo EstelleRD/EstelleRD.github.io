@@ -218,7 +218,7 @@
           <li>Biostatistics &amp; statistical modeling</li>
           <li>Biomarker discovery</li>
           <li>Multi-omics &amp; NGS</li>
-          <li>Machine &amp; deep learning</li>
+          <li>Machine &amp; Deep Learning</li>
           <li>Scientific communication</li>
         </ul>
 
@@ -312,7 +312,7 @@
         <div class="when">2020 — 2023</div>
         <div class="what">
           <h3>MSc, Life Sciences Engineering</h3>
-          <p class="where"><a href="https://www.epfl.ch">EPFL — Swiss Federal Institute of Technology</a> Lausanne</p>
+          <p class="where"><a href="https://www.epfl.ch">EPFL - Swiss Federal Institute of Technology</a> Lausanne</p>
           <p>Average 5.53/6 · Certificate of Excellence (Top 5%) · Neuroscience &amp;
           Neuroengineering specialization · thesis at Harvard Medical School.</p>
         </div>
@@ -329,7 +329,7 @@
         <div class="when">2017 — 2020</div>
         <div class="what">
           <h3>BSc, Life Sciences Engineering</h3>
-          <p class="where"><a href="https://www.epfl.ch">EPFL — Swiss Federal Institute of Technology</a> Lausanne</p>
+          <p class="where"><a href="https://www.epfl.ch">EPFL - Swiss Federal Institute of Technology</a> Lausanne</p>
           <p>Average 4.87/6.</p>
         </div>
       </li>
@@ -338,7 +338,7 @@
     <h3 class="subhead">Skills</h3>
     <dl class="skills">
       <div><dt>Programming</dt><dd>R · SAS · Python · MATLAB · C++ · SQL</dd></div>
-      <div><dt>Methods</dt><dd>Bioinformatic pipelines (RNA-seq, NGS) · machine &amp; deep learning · AI/LLM workflows · GitHub</dd></div>
+      <div><dt>Methods</dt><dd>Bioinformatic pipelines (RNA-seq, NGS) · Machine &amp; Deep Learning · AI/LLM workflows · GitHub</dd></div>
       <div><dt>Domains</dt><dd>Biomarker discovery · multi-omics analysis · immunology · translational health</dd></div>
       <div><dt>Languages</dt><dd>French (fluent) · English (fluent) · Spanish (C1)</dd></div>
     </dl>
@@ -354,7 +354,7 @@
     <h2 id="projects-h" class="section">Projects</h2>
 
     <article class="project">
-      <h3>A Data-Driven Identification of Brain Phenotypes Determinants: Highlighting the Broad and Dominant Influences of Blood Pressure and Cardiovascular Factors</h3>
+      <h3>A data-driven identification of brain phenotypes determinants: highlighting the broad and dominant influences of blood pressure and cardiovascular factors</h3>
       <p class="meta">2023 · Master thesis, Harvard Medical School · Supervised by Chirag Patel and Jacques Fellay</p>
       <p>A comprehensive, data-driven mapping of the factors that shape brain structure and function, testing 3,912 MRI imaging-derived phenotypes against a broad range of physiological, environmental, lifestyle, medical, and genetic predictors in 43,593 UK Biobank participants. Across ~1.8 million associations, blood pressure and cardiovascular factors — diastolic and systolic blood pressure in particular — emerged as the most broadly and consistently influential, especially on white-matter integrity.</p>
       <ul class="links"><li><a href="#">Read thesis (PDF)</a></li></ul>
@@ -369,7 +369,7 @@
     </article>
 
     <article class="project">
-      <h3>Large-scale text analysis with NLP and machine learning</h3>
+      <h3>Large-scale text analysis with NLP and Machine Learning</h3>
       <p class="meta">2021 · Best project out of 117 · EPFL Applied Data Analysis</p>
       <p>Applied machine learning and NLP to large-scale text data, using citation patterns
       to model political positioning — ranked the top data-analysis project in the course.</p>
@@ -541,6 +541,11 @@
     const line = stickyOffset() + 8;
     let active = parts[0];
     parts.forEach(p => { if(p.el && p.el.getBoundingClientRect().top <= line) active = p; });
+    // The last section may be too short to reach the line; when we're at the
+    // bottom of the page, force the last part active so it still highlights.
+    if(Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 2){
+      active = parts[parts.length - 1];
+    }
     parts.forEach(p => p.btn.classList.toggle('is-active', p === active));
   }
 
