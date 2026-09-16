@@ -158,6 +158,14 @@
   .talk h3 a:hover{color:var(--link-hover); text-decoration:underline; text-underline-offset:3px;}
   .talk-note{margin:.3rem 0 0; color:var(--muted); font-size:.92rem; line-height:1.5;}
 
+  /* Conference photo gallery */
+  .gallery{max-width:var(--measure); margin:2.5rem 0 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;}
+  .gallery figure{margin:0;}
+  .gallery img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--hairline); box-shadow:var(--shadow); display:block; transition:transform .2s ease, box-shadow .2s ease;}
+  .gallery img:hover{transform:translateY(-2px); box-shadow:var(--shadow-lift);}
+  .gallery figcaption{margin-top:.5rem; font-size:.82rem; color:var(--muted); line-height:1.4;}
+  @media (max-width:640px){ .gallery{grid-template-columns:1fr;} }
+
   /* Footer */
   footer{border-top:1px solid var(--hairline); margin-top:2rem; padding:2.5rem var(--pad) 3rem;}
   .foot{max-width:74rem; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap; color:var(--faint); font-size:.9rem;}
@@ -527,6 +535,21 @@ Oral presentation at the Swiss Tech Convention Center in the presence of Nobel P
         <p class="talk-note">Intensive training program designed for early-career researchers, PhD candidates, and technicians working in the field of metabolomics.</p>
       </div>
     </article>
+
+  <div class="gallery">
+      <figure>
+        <img src="images/image_ecnp.jpeg" alt="Presenting at the ECNP congress">
+        <figcaption>ECNP Congress, 2025.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/image_lille.JPG" alt="Presenting at the SF-DOHaD congress, Lille">
+        <figcaption>SF-DOHaD, 2025.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/image_metabolomics_course.JPG" alt="Presenting at the European School of Metabolomics">
+        <figcaption>European School of Metabolomics, 2024.</figcaption>
+      </figure>
+    </div>  
   </section>
 
 </main>
