@@ -147,7 +147,7 @@
   .subnav button{font:inherit; cursor:pointer; background:none; border:0; padding:.2rem 0; color:var(--muted); font-weight:600; border-bottom:2px solid transparent; transition:color .18s ease, border-color .18s ease;}
   .subnav button:hover{color:var(--ink);}
   .subnav button.is-active{color:var(--accent); border-bottom-color:var(--accent);}
-  #pub{margin-top:1.2rem;}
+  #pub, #cv-experience{margin-top:1.2rem;}
 
   /* Conferences */
   .talk{max-width:var(--measure); display:grid; grid-template-columns:7rem 1fr; gap:1.3rem; padding:1rem 0; border-top:1px solid var(--hairline);}
@@ -249,7 +249,14 @@
   <section id="cv" class="panel" aria-labelledby="cv-h">
     <h2 id="cv-h" class="section">Curriculum Vitae</h2>
 
-    <h3 class="subhead">Experience</h3>
+    <nav class="subnav" aria-label="Jump to">
+      <button type="button" data-target="cv-experience">Experience</button>
+      <button type="button" data-target="cv-education">Education</button>
+      <button type="button" data-target="cv-projects">Projects</button>
+      <button type="button" data-target="cv-skills">Skills</button>
+    </nav>
+
+    <h3 class="subhead" id="cv-experience">Experience</h3>
     <ul class="timeline">
       <li class="entry">
         <div class="when">Feb 2024 — now</div>
@@ -304,7 +311,7 @@
       </li>
     </ul>
 
-    <h3 class="subhead">Education</h3>
+    <h3 class="subhead" id="cv-education">Education</h3>
     <ul class="timeline">
       <li class="entry">
         <div class="when">2020 — 2023</div>
@@ -333,7 +340,32 @@
       </li>
     </ul>
 
-    <h3 class="subhead">Skills</h3>
+    <h3 class="subhead" id="cv-projects">Projects</h3>
+    <ul class="timeline">
+      <li class="entry">
+        <div class="when">2021</div>
+        <div class="what">
+          <h3>Large-Scale Text Analysis using NLP and Machine Learning</h3>
+          <p>Best data analysis project out of 117 in EPFL's Applied Data Analysis course. Applied machine learning and NLP to large-scale text data, using citation patterns to model political positioning.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">2020</div>
+        <div class="what">
+          <h3>Sickle Cell Disease Diagnosis from Microscopy Blood Images using Deep Learning</h3>
+          <p>Built a deep learning model for automated segmentation of blood microscopy images to enable AI-based diagnosis of sickle cell disease.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">2020</div>
+        <div class="what">
+          <h3>Scientific Project Design in Translational Neuroscience</h3>
+          <p>Designed a probiotic-based product concept to reduce symptoms of depression, based on the gut microbiota–brain biological links.</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3 class="subhead" id="cv-skills">Skills</h3>
       <dl class="skills">
         <div><dt>Programming</dt><dd>R · Python · SAS · MATLAB · C++ · SQL</dd></div>
         <div><dt>Methods</dt><dd>Machine &amp; Deep Learning · Statistical modeling · Bioinformatic pipelines (RNA-seq, NGS) · AI/LLM workflows · Reproducible analysis (GitHub)</dd></div>
@@ -522,49 +554,48 @@
   window.addEventListener('hashchange', fromHash);
   fromHash();
 
-  // Sub-navigation: sticky, with smooth-scroll + active-part highlighting (no hash change)
+  // Sub-navigation: sticky sub-tabs with smooth-scroll + active highlighting (no hash change)
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const siteHeader = document.querySelector('header');
-  const subnav = document.querySelector('.subnav');
 
   function setHeaderVar(){
     const h = siteHeader ? siteHeader.offsetHeight : 56;
     document.documentElement.style.setProperty('--header-h', h + 'px');
   }
-  function stickyOffset(){
+  function offsetFor(subnav){
     return (siteHeader ? siteHeader.offsetHeight : 0) + (subnav ? subnav.offsetHeight : 0) + 14;
   }
 
-  const parts = subnav ? [
-    {btn: subnav.querySelector('[data-target="pub"]'), el: document.getElementById('pub')},
-    {btn: subnav.querySelector('[data-target="conferences"]'), el: document.getElementById('conferences')}
-  ] : [];
-
-  parts.forEach(p => {
-    p.btn.addEventListener('click', () => {
-      if(!p.el) return;
-      const y = p.el.getBoundingClientRect().top + window.scrollY - stickyOffset();
-      window.scrollTo({top: y, behavior: reduceMotion ? 'auto' : 'smooth'});
+  const groups = Array.from(document.querySelectorAll('.subnav')).map(subnav => {
+    const parts = Array.from(subnav.querySelectorAll('button[data-target]')).map(btn => ({
+      btn, el: document.getElementById(btn.dataset.target)
+    }));
+    parts.forEach(p => {
+      p.btn.addEventListener('click', () => {
+        if(!p.el) return;
+        const y = p.el.getBoundingClientRect().top + window.scrollY - offsetFor(subnav);
+        window.scrollTo({top: y, behavior: reduceMotion ? 'auto' : 'smooth'});
+      });
     });
+    return {subnav, parts};
   });
 
-  function updateActivePart(){
-    if(!parts.length) return;
-    const line = stickyOffset() + 8;
-    let active = parts[0];
-    parts.forEach(p => { if(p.el && p.el.getBoundingClientRect().top <= line) active = p; });
-    // The last section may be too short to reach the line; when we're at the
-    // bottom of the page, force the last part active so it still highlights.
-    if(Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 2){
-      active = parts[parts.length - 1];
-    }
-    parts.forEach(p => p.btn.classList.toggle('is-active', p === active));
+  function updateActiveParts(){
+    const atBottom = Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 2;
+    groups.forEach(({subnav, parts}) => {
+      if(!parts.length) return;
+      const line = offsetFor(subnav) + 8;
+      let active = parts[0];
+      parts.forEach(p => { if(p.el && p.el.getBoundingClientRect().top <= line) active = p; });
+      if(atBottom) active = parts[parts.length - 1];
+      parts.forEach(p => p.btn.classList.toggle('is-active', p === active));
+    });
   }
 
   setHeaderVar();
-  updateActivePart();
-  window.addEventListener('scroll', updateActivePart, {passive:true});
-  window.addEventListener('resize', () => { setHeaderVar(); updateActivePart(); });
+  updateActiveParts();
+  window.addEventListener('scroll', updateActiveParts, {passive:true});
+  window.addEventListener('resize', () => { setHeaderVar(); updateActiveParts(); });
 
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
